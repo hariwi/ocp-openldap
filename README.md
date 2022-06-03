@@ -21,7 +21,7 @@ $ RELEASE_NAME=demo-openldap
 $ NAMESPACE=demo-openldap
 $ oc new-project $NAMESPACE
 $ oc adm policy add-scc-to-user anyuid -z default -n $NAMESPACE
-$ helm install $RELEASE_NAME https://github.com/hariwi/ocp-openldap/releases/download/0.1.7/ocp-openldap-master.zip --namespace $NAMESPACE
+$ helm install $RELEASE_NAME https://github.com/hariwi/ocp-openldap/releases/download/0.1.7/ocp-openldap-master.tgz --namespace $NAMESPACE
 
 ```
 
