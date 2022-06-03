@@ -21,13 +21,8 @@ $ RELEASE_NAME=demo-openldap
 $ NAMESPACE=demo-openldap
 $ oc new-project $NAMESPACE
 $ oc adm policy add-scc-to-user anyuid -z default -n $NAMESPACE
-$ helm install $RELEASE_NAME https://github.com/ccavazos/cp4i-openldap/releases/download/0.1.7/cp4i-openldap-0.1.7.tgz --namespace $NAMESPACE
-NAME: cp4i-openldap
-LAST DEPLOYED: Thu Aug 27 18:20:27 2020
-NAMESPACE: cp4i-ldap
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
+$ helm install $RELEASE_NAME https://github.com/hariwi/ocp-openldap/releases/download/0.1.7/ocp-openldap-master.zip --namespace $NAMESPACE
+
 ```
 
 ### Manage users via phpLDAPadmin
@@ -42,7 +37,7 @@ $ oc port-forward $(oc get pods -n $NAMESPACE | grep $RELEASE_NAME-admin | awk '
 ```
 
 Once this is setup you can access it via the browser at `http://localhost:8080/`. 
-The Login DN is `cn=admin,dc=ibm,dc=com` and the password is defined in the values of this chart.
+The Login DN is `cn=admin,dc=myldap,dc=demo` and the password is defined in the values of this chart.
 
 ### Manage users via OpenShift
 
