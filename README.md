@@ -1,25 +1,24 @@
-# OpenLDAP on OpenShift for IBM Cloud Pak for Integration
+# OpenLDAP on OpenShift 
 
-Installs OpenLDAP and phpLDAPadmin with a few initial users for the purposes of showing LDAP integration capabilities with Cloud Pak for Integration.
+Installs OpenLDAP and phpLDAPadmin.
 
-> Recommended to use this **only** for **non-production** purposes. Any organization will have some an LDAP server that can be leveraged to configure Cloud Pak for Integration.
+> Recommended to use this **only** for **non-production** purposes.
 
 ## Tested on
 
 > The installation of the Helm CLI is done directly from the OpenShift website. See below.
 
 - OpenLDAP running with **HTTPS disabled**
-- OpenShift Cluster **4.4.17** running on [IBM Cloud ROKS Service](https://www.ibm.com/cloud/openshift)
+- OpenShift Cluster **4.x.z** 
 - Helm CLI **v3.2.3+4.el8**
-- Cloud Pak for Integration 2020.2.1
 
 ## Installation
 
 > Make sure you have already logged into the OpenShift CLI (i.e. `oc login`)
 
 ```bash
-$ RELEASE_NAME=cp4i-openldap
-$ NAMESPACE=cp4i-ldap
+$ RELEASE_NAME=demo-openldap
+$ NAMESPACE=demo-openldap
 $ oc new-project $NAMESPACE
 $ oc adm policy add-scc-to-user anyuid -z default -n $NAMESPACE
 $ helm install $RELEASE_NAME https://github.com/ccavazos/cp4i-openldap/releases/download/0.1.7/cp4i-openldap-0.1.7.tgz --namespace $NAMESPACE
@@ -38,11 +37,12 @@ By default the LDAP UI is not exposed outside the cluster (and also is insecure)
 > In this example, `192.168.1.1` is the IP of your computer
 
 ```bash
-$ oc port-forward $(oc get pods -n $NAMESPACE | grep $RELEASE_NAME-admin | awk '{print $1}') -n $NAMESPACE 8080:80 --address=192.168.1.1
-Forwarding from 192.168.1.1:8080 -> 80
+$ oc port-forward $(oc get pods -n $NAMESPACE | grep $RELEASE_NAME-admin | awk '{print $1}') -n $NAMESPACE 8080:80
+
 ```
 
-Once this is setup you can access it via the browser at `http://192.168.1.1:8080/`. The Login DN is `cn=admin,dc=ibm,dc=com` and the password is defined in the values of this chart.
+Once this is setup you can access it via the browser at `http://localhost:8080/`. 
+The Login DN is `cn=admin,dc=ibm,dc=com` and the password is defined in the values of this chart.
 
 ### Manage users via OpenShift
 
