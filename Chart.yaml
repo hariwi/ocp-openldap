@@ -1,6 +1,6 @@
 apiVersion: v1
-description: A OpenLDAP Chart for Kubernetes
-name: cp4i-openldap
+description: A OpenLDAP Chart for OpenShift
+name: openldap
 version: 0.1.7
 keywords: [ldap]
 home: https://www.openldap.ort
