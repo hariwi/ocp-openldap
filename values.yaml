@@ -1,5 +1,5 @@
 OpenLdap:
-  Image: "bitnami/openldap"
+  Image: "docker.io/osixia/openldap"
   ImageTag: "latest"
   ImagePullPolicy: "Always"
   Component: "openldap"
